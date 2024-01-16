@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Stock</th>
+        <th>Number of shares</th>
+        <th>Price of stock</th>
+        <th>Total value of holding</th>
+        <!--<th>Current cash balance</th>-->
+    </tr>
+    </thead>
+
+    <tbody>
+        <!-- here we will inser the for loop-->
+        {% for row in stocks %}
+        <tr>
+            <td> {{ row["symbol"] }} </td>
+            <td> {{ row["shares"] }} </td>
+            <td> {{ row["price"] | usd }} </td>
+            <td> {{ row["holding"] | usd }} </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td> CASH: </td>
+            <td> {{ usercash | usd }} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td> TOTAL: </td>
+            <td> {{ totalcash | usd }} </td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}
